@@ -1,0 +1,136 @@
+// Generated documentation. Please do not edit.
+:anchor_prefix: k8s-api
+
+[id="{p}-api-reference"]
+= API Reference
+
+.Packages
+- xref:{anchor_prefix}-rabbitmq-com-v1alpha1[$$rabbitmq.com/v1alpha1$$]
+
+
+[id="{anchor_prefix}-rabbitmq-com-v1alpha1"]
+== rabbitmq.com/v1alpha1
+
+Package v1alpha1 contains API Schema definitions for the rabbitmq.com v1alpha1 API group
+
+.Resource Types
+- xref:{anchor_prefix}-github-com-rabbitmq-single-active-consumer-operator-api-v1alpha1-superstreamconsumer[$$SuperStreamConsumer$$]
+- xref:{anchor_prefix}-github-com-rabbitmq-single-active-consumer-operator-api-v1alpha1-superstreamconsumerlist[$$SuperStreamConsumerList$$]
+
+
+=== Definitions
+
+[id="{anchor_prefix}-github-com-rabbitmq-single-active-consumer-operator-api-v1alpha1-superstreamconsumer"]
+==== SuperStreamConsumer 
+
+SuperStreamConsumer is the Schema for the superstreamconsumers API
+
+.Appears In:
+****
+- xref:{anchor_prefix}-github-com-rabbitmq-single-active-consumer-operator-api-v1alpha1-superstreamconsumerlist[$$SuperStreamConsumerList$$]
+****
+
+[cols="25a,75a", options="header"]
+|===
+| Field | Description
+| *`apiVersion`* __string__ | `rabbitmq.com/v1alpha1`
+| *`kind`* __string__ | `SuperStreamConsumer`
+| *`TypeMeta`* __link:https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.22/#typemeta-v1-meta[$$TypeMeta$$]__ | 
+| *`metadata`* __link:https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.22/#objectmeta-v1-meta[$$ObjectMeta$$]__ | Refer to Kubernetes API documentation for fields of `metadata`.
+
+| *`spec`* __xref:{anchor_prefix}-github-com-rabbitmq-single-active-consumer-operator-api-v1alpha1-superstreamconsumerspec[$$SuperStreamConsumerSpec$$]__ | 
+| *`status`* __xref:{anchor_prefix}-github-com-rabbitmq-single-active-consumer-operator-api-v1alpha1-superstreamconsumerstatus[$$SuperStreamConsumerStatus$$]__ | 
+|===
+
+
+[id="{anchor_prefix}-github-com-rabbitmq-single-active-consumer-operator-api-v1alpha1-superstreamconsumerlist"]
+==== SuperStreamConsumerList 
+
+SuperStreamConsumerList contains a list of SuperStreamConsumer
+
+
+
+[cols="25a,75a", options="header"]
+|===
+| Field | Description
+| *`apiVersion`* __string__ | `rabbitmq.com/v1alpha1`
+| *`kind`* __string__ | `SuperStreamConsumerList`
+| *`TypeMeta`* __link:https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.22/#typemeta-v1-meta[$$TypeMeta$$]__ | 
+| *`metadata`* __link:https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.22/#listmeta-v1-meta[$$ListMeta$$]__ | Refer to Kubernetes API documentation for fields of `metadata`.
+
+| *`items`* __xref:{anchor_prefix}-github-com-rabbitmq-single-active-consumer-operator-api-v1alpha1-superstreamconsumer[$$SuperStreamConsumer$$]__ | 
+|===
+
+
+[id="{anchor_prefix}-github-com-rabbitmq-single-active-consumer-operator-api-v1alpha1-superstreamconsumerpodspec"]
+==== SuperStreamConsumerPodSpec 
+
+
+
+.Appears In:
+****
+- xref:{anchor_prefix}-github-com-rabbitmq-single-active-consumer-operator-api-v1alpha1-superstreamconsumerspec[$$SuperStreamConsumerSpec$$]
+****
+
+[cols="25a,75a", options="header"]
+|===
+| Field | Description
+| *`default`* __link:https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.22/#podspec-v1-core[$$PodSpec$$]__ | Default defines the PodSpec to use for all consumer Pods, if no routing key-specific PodSpec is provided.
+| *`perRoutingKey`* __object (keys:string, values:link:https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.22/#podspec-v1-core[$$PodSpec$$])__ | PerRoutingKey maps PodsSpecs to specific routing keys. If a consumer is spun up for a SuperStream partition, and the routing key for that partition matches an entry in PerRoutingKey, that PodSpec will be used for the consumer Pod; otherwise the default PodSpec is used.
+|===
+
+
+[id="{anchor_prefix}-github-com-rabbitmq-single-active-consumer-operator-api-v1alpha1-superstreamconsumerspec"]
+==== SuperStreamConsumerSpec 
+
+SuperStreamConsumerSpec defines the desired state of SuperStreamConsumer
+
+.Appears In:
+****
+- xref:{anchor_prefix}-github-com-rabbitmq-single-active-consumer-operator-api-v1alpha1-superstreamconsumer[$$SuperStreamConsumer$$]
+****
+
+[cols="25a,75a", options="header"]
+|===
+| Field | Description
+| *`superStreamReference`* __xref:{anchor_prefix}-github-com-rabbitmq-single-active-consumer-operator-api-v1alpha1-superstreamreference[$$SuperStreamReference$$]__ | Reference to the SuperStream that the SuperStreamConsumer will consume from, in the same namespace. Required property.
+| *`consumerPodSpec`* __xref:{anchor_prefix}-github-com-rabbitmq-single-active-consumer-operator-api-v1alpha1-superstreamconsumerpodspec[$$SuperStreamConsumerPodSpec$$]__ | ConsumerPodSpec defines the PodSpecs to use for any consumer Pods that are created for the SuperStream.
+|===
+
+
+[id="{anchor_prefix}-github-com-rabbitmq-single-active-consumer-operator-api-v1alpha1-superstreamconsumerstatus"]
+==== SuperStreamConsumerStatus 
+
+SuperStreamConsumerStatus defines the observed state of SuperStreamConsumer
+
+.Appears In:
+****
+- xref:{anchor_prefix}-github-com-rabbitmq-single-active-consumer-operator-api-v1alpha1-superstreamconsumer[$$SuperStreamConsumer$$]
+****
+
+[cols="25a,75a", options="header"]
+|===
+| Field | Description
+| *`observedGeneration`* __integer__ | observedGeneration is the most recent successful generation observed for this SuperStreamConsumer. It corresponds to the SuperStreamConsumer's generation, which is updated on mutation by the API Server.
+| *`conditions`* __xref:{anchor_prefix}-github-com-rabbitmq-messaging-topology-operator-api-v1beta1-condition[$$Condition$$] array__ | 
+|===
+
+
+[id="{anchor_prefix}-github-com-rabbitmq-single-active-consumer-operator-api-v1alpha1-superstreamreference"]
+==== SuperStreamReference 
+
+
+
+.Appears In:
+****
+- xref:{anchor_prefix}-github-com-rabbitmq-single-active-consumer-operator-api-v1alpha1-superstreamconsumerspec[$$SuperStreamConsumerSpec$$]
+****
+
+[cols="25a,75a", options="header"]
+|===
+| Field | Description
+| *`name`* __string__ | The name of the SuperStream to reference.
+| *`namespace`* __string__ | The namespace of the SuperStream to reference.
+|===
+
+

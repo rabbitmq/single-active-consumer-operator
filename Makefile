@@ -51,7 +51,7 @@ unit-tests: $(KUBEBUILDER_ASSETS) generate fmt vet manifests ## Run unit tests
 
 
 system-tests: ## run end-to-end tests against Kubernetes cluster defined in ~/.kube/config. Expects cluster operator and messaging topology operator to be installed in the cluster
-	NAMESPACE="rabbitmq-system" ginkgo -randomizeAll -r system_tests/
+	NAMESPACE="rabbitmq-system" ginkgo -randomize-all -r system_tests/
 
 # Build manager binary
 manager: generate fmt vet
@@ -102,6 +102,7 @@ deploy-rbac:
 # Generate manifests e.g. CRD, RBAC etc.
 manifests: install-tools
 	controller-gen crd rbac:roleName=manager-role webhook paths="./..." output:crd:artifacts:config=config/crd/bases
+	./hack/remove-podspec-descriptions.sh
 
 # Generate API reference documentation
 api-reference:
