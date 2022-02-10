@@ -6,7 +6,7 @@ require (
 	github.com/elastic/crd-ref-docs v0.0.7 // indirect
 	github.com/michaelklishin/rabbit-hole/v2 v2.12.0
 	github.com/mitchellh/hashstructure/v2 v2.0.2
-	github.com/onsi/ginkgo/v2 v2.1.0
+	github.com/onsi/ginkgo/v2 v2.1.1
 	github.com/onsi/gomega v1.18.0
 	github.com/rabbitmq/cluster-operator v1.11.1
 	github.com/rabbitmq/messaging-topology-operator v1.3.0

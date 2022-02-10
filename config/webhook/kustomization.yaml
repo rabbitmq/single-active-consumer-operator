@@ -4,3 +4,17 @@ resources:
 
 configurations:
 - kustomizeconfig.yaml
+
+patchesJson6902:
+- target:
+    kind: ValidatingWebhookConfiguration
+    name: validating-webhook-configuration
+    version: v1
+    group: admissionregistration.k8s.io
+  patch: |-
+    - op: replace
+      path: /metadata/name
+      value: sac-validating-webhook-configuration
+    - op: replace
+      path: /webhooks/0/clientConfig/service/name
+      value: sac-webhook-service

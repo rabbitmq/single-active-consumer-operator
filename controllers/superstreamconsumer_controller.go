@@ -51,13 +51,13 @@ type SuperStreamConsumerReconciler struct {
 	recorder record.EventRecorder
 }
 
-//+kubebuilder:rbac:groups=rabbitmq.com,resources=superstreams,verbs=get;list;watch
+//+kubebuilder:rbac:groups=rabbitmq.com,resources=superstreams,verbs=get;list;watch;create;update;patch;delete
 //+kubebuilder:rbac:groups=rabbitmq.com,resources=superstreamconsumers,verbs=get;list;watch;create;update;patch;delete
 //+kubebuilder:rbac:groups=rabbitmq.com,resources=superstreamconsumers/status,verbs=get;update;patch
 //+kubebuilder:rbac:groups=rabbitmq.com,resources=superstreamconsumers/finalizers,verbs=update
-// +kubebuilder:rbac:groups="",resources=pods,verbs=get;create;list;update;delete;patch;watch
-// +kubebuilder:rbac:groups="",resources=services,verbs=get;list;watch
-//+kubebuilder:rbac:groups=rabbitmq.com,resources=events,verbs=create;patch
+//+kubebuilder:rbac:groups="",resources=pods,verbs=get;create;list;update;delete;patch;watch
+//+kubebuilder:rbac:groups="",resources=services,verbs=get;list;watch
+//+kubebuilder:rbac:groups="",resources=events,verbs=create;get;patch
 
 // Reconcile is part of the main kubernetes reconciliation loop which aims to
 // move the current state of the cluster closer to the desired state.

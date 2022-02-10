@@ -9,6 +9,14 @@ rules:
 - apiGroups:
   - ""
   resources:
+  - events
+  verbs:
+  - create
+  - get
+  - patch
+- apiGroups:
+  - ""
+  resources:
   - pods
   verbs:
   - create
@@ -26,13 +34,6 @@ rules:
   - get
   - list
   - watch
-- apiGroups:
-  - rabbitmq.com
-  resources:
-  - events
-  verbs:
-  - create
-  - patch
 - apiGroups:
   - rabbitmq.com
   resources:
@@ -64,6 +65,10 @@ rules:
   resources:
   - superstreams
   verbs:
+  - create
+  - delete
   - get
   - list
+  - patch
+  - update
   - watch

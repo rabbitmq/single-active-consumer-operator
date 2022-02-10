@@ -16,14 +16,14 @@ vars:
   objref:
     kind: Service
     version: v1
-    name: webhook-service
+    name: sac-webhook-service
   fieldref:
     fieldpath: metadata.namespace
 - name: SERVICE_NAME
   objref:
     kind: Service
     version: v1
-    name: webhook-service
+    name: sac-webhook-service
 - name: CERTIFICATE_NAMESPACE # namespace of the certificate CR
   objref:
     kind: Certificate

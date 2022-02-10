@@ -18,6 +18,7 @@ package main
 
 import (
 	"flag"
+	topology "github.com/rabbitmq/messaging-topology-operator/api/v1alpha1"
 	"os"
 
 	// Import all Kubernetes client auth plugins (e.g. Azure, GCP, OIDC, etc.)
@@ -43,7 +44,7 @@ var (
 
 func init() {
 	utilruntime.Must(clientgoscheme.AddToScheme(scheme))
-
+	utilruntime.Must(topology.AddToScheme(scheme))
 	utilruntime.Must(sacv1alpha1.AddToScheme(scheme))
 	//+kubebuilder:scaffold:scheme
 }
@@ -83,10 +84,6 @@ func main() {
 		Scheme: mgr.GetScheme(),
 	}).SetupWithManager(mgr); err != nil {
 		setupLog.Error(err, "unable to create controller", "controller", "SuperStreamConsumer")
-		os.Exit(1)
-	}
-	if err = (&sacv1alpha1.SuperStreamConsumer{}).SetupWebhookWithManager(mgr); err != nil {
-		setupLog.Error(err, "unable to create webhook", "webhook", "SuperStreamConsumer")
 		os.Exit(1)
 	}
 	if os.Getenv("ENABLE_WEBHOOKS") != "false" {
