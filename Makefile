@@ -80,7 +80,7 @@ uninstall: manifests
 	kustomize build config/crd | kubectl delete -f -
 
 deploy-manager:
-	kustomize build config/default/overlays/cert-manager/ | kubectl apply -f -
+	kustomize build config/default/base | kubectl apply -f -
 
 deploy: manifests deploy-rbac deploy-manager
 
