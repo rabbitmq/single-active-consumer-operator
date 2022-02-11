@@ -167,7 +167,7 @@ ifeq (, $(K8S_OPERATOR_NAMESPACE))
 K8S_OPERATOR_NAMESPACE=rabbitmq-system
 endif
 
-dependency-operators: $(CMCTL)
+dependency-operators: $(LOCAL_BIN) $(CMCTL)
 	@kubectl apply -f https://github.com/jetstack/cert-manager/releases/download/$(CERT_MANAGER_VERSION)/cert-manager.yaml
 	@kubectl apply -f https://github.com/rabbitmq/cluster-operator/releases/download/$(CLUSTER_OPERATOR_VERSION)/cluster-operator.yml
 	@$(CMCTL) check api --wait=2m
