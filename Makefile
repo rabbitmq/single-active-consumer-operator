@@ -181,6 +181,4 @@ destroy-dependency-operators:
 ## used in CI pipeline to create release artifact
 generate-manifests:
 	mkdir -p releases
-	kustomize build config/installation/  > releases/single-active-consumer-operator.bak
-	sed '/CERTIFICATE_NAMESPACE.*CERTIFICATE_NAME/d' releases/single-active-consumer-operator.bak > releases/single-active-consumer-operator.yaml
-	kustomize build config/installation/cert-manager/ > releases/single-active-consumer-operator-with-certmanager.yaml
+	kustomize build config/installation/ > releases/single-active-consumer-operator-with-certmanager.yaml
