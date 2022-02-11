@@ -42,7 +42,7 @@ LOCAL_TESTBIN = $(CURDIR)/testbin
 # https://pkg.go.dev/sigs.k8s.io/controller-runtime/pkg/envtest
 export KUBEBUILDER_ASSETS = $(LOCAL_TESTBIN)/k8s/$(ENVTEST_K8S_VERSION)-$(platform)-$(shell go env GOARCH)
 
-$(KUBEBUILDER_ASSETS):
+$(KUBEBUILDER_ASSETS): install-tools
 	setup-envtest --os $(platform) --arch $(shell go env GOARCH) --bin-dir $(LOCAL_TESTBIN) use $(ENVTEST_K8S_VERSION)
 
 .PHONY: unit-tests
