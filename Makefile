@@ -21,6 +21,8 @@ TOPOLOGY_OPERATOR_VERSION ?=v1.3.0
 CERT_MANAGER_VERSION ?=v1.7.0
 
 LOCAL_BIN = $(CURDIR)/bin
+$(LOCAL_BIN):
+	mkdir $(LOCAL_BIN)
 CMCTL_BIN := cmctl
 CMCTL := $(CURDIR)/bin/$(CMCTL_BIN)
 CMCTL_FILE := cmctl-$(platform)-$(shell go env GOARCH).tar.gz
@@ -167,7 +169,7 @@ ifeq (, $(K8S_OPERATOR_NAMESPACE))
 K8S_OPERATOR_NAMESPACE=rabbitmq-system
 endif
 
-dependency-operators: $(LOCAL_BIN) $(CMCTL)
+dependency-operators: | $(LOCAL_BIN) $(CMCTL)
 	@kubectl apply -f https://github.com/jetstack/cert-manager/releases/download/$(CERT_MANAGER_VERSION)/cert-manager.yaml
 	@kubectl apply -f https://github.com/rabbitmq/cluster-operator/releases/download/$(CLUSTER_OPERATOR_VERSION)/cluster-operator.yml
 	@$(CMCTL) check api --wait=2m
