@@ -96,7 +96,7 @@ destroy-dependency-operators: ## Remove the required prerequisite operators from
 .PHONY: generate-manifests
 generate-manifests: ## used in CI pipeline to create release artifact
 	mkdir -p releases
-	kustomize build config/installation/ > releases/single-active-consumer-operator-with-certmanager.yaml
+	$(KUSTOMIZE) build config/default > releases/single-active-consumer-operator-with-certmanager.yaml
 
 ##@ Build
 
