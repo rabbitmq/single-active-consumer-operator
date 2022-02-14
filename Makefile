@@ -44,7 +44,7 @@ help: ## Display this help.
 ##@ Development
 
 .PHONY: manifests
-manifests: controller-gen yj ## Generate WebhookConfiguration, ClusterRole and CustomResourceDefinition objects.
+manifests: controller-gen yj jq ## Generate WebhookConfiguration, ClusterRole and CustomResourceDefinition objects.
 	$(CONTROLLER_GEN) rbac:roleName=manager-role crd webhook paths="./..." output:crd:artifacts:config=config/crd/bases
 	./hack/remove-podspec-descriptions.sh
 
@@ -203,6 +203,17 @@ YJ = $(shell pwd)/bin/yj
 .PHONY: yj
 yj: ## Download yj locally if necessary.
 	$(call go-get-tool,$(YJ),github.com/sclevine/yj@latest)
+
+JQ = $(shell pwd)/bin/jq
+ifeq ($(shell go env GOOS),darwin)
+JQ_NAME = jq-osx-amd64
+else
+JQ_NAME = jq-linux64
+endif
+.PHONY: jq
+jq: ## Download jq locally if necessary.
+	curl -sSL -o $(JQ) https://github.com/stedolan/jq/releases/download/jq-1.6/$(JQ_NAME)
+	chmod +x $(JQ)
 
 CMCTL = $(shell pwd)/bin/cmctl
 .PHONY: cmctl
