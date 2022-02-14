@@ -90,6 +90,21 @@ var _ = BeforeSuite(func() {
 		return output
 	}, 10, 1).Should(ContainSubstring("1/1"), "messaging-topology-operator not deployed")
 
+	Eventually(func() []byte {
+		output, err := kubectl(
+			"-n",
+			namespace,
+			"get",
+			"deployment",
+			"-l",
+			"app.kubernetes.io/name=single-active-consumer-operator",
+		)
+
+		Expect(err).NotTo(HaveOccurred())
+
+		return output
+	}, 10, 1).Should(ContainSubstring("1/1"), "single-active-consumer-operator not deployed")
+
 	output, err := kubectl(
 		"-n",
 		"chaos-testing",

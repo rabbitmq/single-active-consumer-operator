@@ -8,5 +8,5 @@ roleRef:
   name: manager-role
 subjects:
 - kind: ServiceAccount
-  name: single-active-consumer-operator
-  namespace: rabbitmq-system
+  name: controller-manager
+  namespace: system

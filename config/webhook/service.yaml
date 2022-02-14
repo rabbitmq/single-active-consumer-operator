@@ -2,7 +2,7 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: sac-webhook-service
+  name: webhook-service
   namespace: system
 spec:
   ports:
@@ -10,4 +10,4 @@ spec:
       protocol: TCP
       targetPort: 9443
   selector:
-    app.kubernetes.io/name: single-active-consumer-operator
+    control-plane: controller-manager

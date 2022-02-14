@@ -1,15 +1,17 @@
+domain: rabbitmq.com
 layout:
 - go.kubebuilder.io/v3
 projectName: single-active-consumer-operator
-repo: single-active-consumer-operator
+repo: github.com/rabbitmq/single-active-consumer-operator
 resources:
 - api:
     crdVersion: v1
     namespaced: true
   controller: true
+  domain: rabbitmq.com
   group: rabbitmq.com
   kind: SuperStreamConsumer
-  path: single-active-consumer-operator/api/v1alpha1
+  path: github.com/rabbitmq/single-active-consumer-operator/api/v1alpha1
   version: v1alpha1
   webhooks:
     validation: true
