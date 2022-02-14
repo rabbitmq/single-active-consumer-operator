@@ -81,7 +81,7 @@ api-reference: crd-ref-docs ## Generate API reference documentation
 		--max-depth 30
 
 .PHONY: dependency-operators
-dependency-operators: | $(LOCAL_BIN) $(CMCTL) ## Install the required prerequisite operators onto the targeted cluster
+dependency-operators: cmctl ## Install the required prerequisite operators onto the targeted cluster
 	@kubectl apply -f https://github.com/jetstack/cert-manager/releases/download/$(CERT_MANAGER_VERSION)/cert-manager.yaml
 	@kubectl apply -f https://github.com/rabbitmq/cluster-operator/releases/download/$(CLUSTER_OPERATOR_VERSION)/cluster-operator.yml
 	@$(CMCTL) check api --wait=2m
