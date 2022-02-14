@@ -44,7 +44,7 @@ help: ## Display this help.
 ##@ Development
 
 .PHONY: manifests
-manifests: controller-gen ## Generate WebhookConfiguration, ClusterRole and CustomResourceDefinition objects.
+manifests: controller-gen yj ## Generate WebhookConfiguration, ClusterRole and CustomResourceDefinition objects.
 	$(CONTROLLER_GEN) rbac:roleName=manager-role crd webhook paths="./..." output:crd:artifacts:config=config/crd/bases
 	./hack/remove-podspec-descriptions.sh
 
@@ -64,16 +64,16 @@ vet: ## Run go vet against code.
 test: unit-tests system-tests ## Run all tests (requires a targeted cluster).
 
 .PHONY: unit-tests
-unit-tests: manifests generate fmt vet envtest ## Run unit tests.
-	KUBEBUILDER_ASSETS="$(shell $(ENVTEST) use $(ENVTEST_K8S_VERSION) -p path)" ginkgo -r --randomize-all api/ internal/
+unit-tests: manifests generate fmt vet envtest ginkgo ## Run unit tests.
+	KUBEBUILDER_ASSETS="$(shell $(ENVTEST) use $(ENVTEST_K8S_VERSION) -p path)" $(GINKGO) -r --randomize-all api/ internal/
 
 .PHONY: system-tests
-system-tests: manifests generate fmt vet envtest ## Run end-to-end tests against Kubernetes cluster defined in ~/.kube/config. Expects cluster operator, messaging topology operator and cert-manager to be installed in the cluster.
-	NAMESPACE="rabbitmq-system" ginkgo -randomize-all -r system_tests/
+system-tests: manifests generate fmt vet envtest ginkgo ## Run end-to-end tests against Kubernetes cluster defined in ~/.kube/config. Expects cluster operator, messaging topology operator and cert-manager to be installed in the cluster.
+	NAMESPACE="rabbitmq-system" $(GINKGO) -randomize-all -r system_tests/
 
 .PHONY: api-reference
-api-reference: ## Generate API reference documentation
-	crd-ref-docs \
+api-reference: crd-ref-docs ## Generate API reference documentation
+	$(CRD_REF_DOCS) \
 		--source-path ./api \
 		--config ./docs/api/autogen/config.yaml \
 		--templates-dir ./docs/api/autogen/templates \
@@ -115,11 +115,6 @@ docker-build: test ## Build docker image with the manager.
 .PHONY: docker-push
 docker-push: ## Push docker image with the manager.
 	docker push ${IMG}
-
-.PHONY: install-tools
-install-tools:
-	go mod download
-	grep _ tools/tools.go | awk -F '"' '{print $$2}' | xargs -t go install
 
 ##@ Deployment
 
@@ -193,6 +188,21 @@ ENVTEST = $(shell pwd)/bin/setup-envtest
 .PHONY: envtest
 envtest: ## Download envtest-setup locally if necessary.
 	$(call go-get-tool,$(ENVTEST),sigs.k8s.io/controller-runtime/tools/setup-envtest@latest)
+
+CRD_REF_DOCS = $(shell pwd)/bin/crd-ref-docs
+.PHONY: crd-ref-docs
+crd-ref-docs: ## Download crd-ref-docs locally if necessary.
+	$(call go-get-tool,$(CRD_REF_DOCS),github.com/elastic/crd-ref-docs@v0.0.7)
+
+GINKGO = $(shell pwd)/bin/ginkgo
+.PHONY: ginkgo
+ginkgo: ## Download ginkgo locally if necessary.
+	$(call go-get-tool,$(GINKGO),github.com/onsi/ginkgo/v2/ginkgo@v2.0.0)
+
+YJ = $(shell pwd)/bin/yj
+.PHONY: yj
+yj: ## Download yj locally if necessary.
+	$(call go-get-tool,$(YJ),github.com/sclevine/yj@latest)
 
 CMCTL = $(shell pwd)/bin/cmctl
 .PHONY: cmctl
