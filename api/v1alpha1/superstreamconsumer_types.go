@@ -77,10 +77,10 @@ type SuperStreamConsumerList struct {
 	Items           []SuperStreamConsumer `json:"items"`
 }
 
-func (q *SuperStreamConsumer) GroupResource() schema.GroupResource {
+func (s *SuperStreamConsumer) GroupResource() schema.GroupResource {
 	return schema.GroupResource{
-		Group:    q.GroupVersionKind().Group,
-		Resource: q.GroupVersionKind().Kind,
+		Group:    s.GroupVersionKind().Group,
+		Resource: s.GroupVersionKind().Kind,
 	}
 }
 
