@@ -442,7 +442,7 @@ java -Dio.netty.processId=1 -jar super-stream-app.jar consumer --stream "${ACTIV
 						managedresource.AnnotationSuperStreamPartition: targetPartition,
 					}))).To(Succeed())
 					if len(consumerPods.Items) != 1 {
-						return fmt.Errorf("Cannot find pod for routing key eu-west-5")
+						return fmt.Errorf("cannot find pod for routing key eu-west-5")
 					}
 					return nil
 				}, 30*time.Second, 1*time.Second).Should(Succeed())
