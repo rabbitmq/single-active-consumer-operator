@@ -28,7 +28,7 @@ import (
 	logf "sigs.k8s.io/controller-runtime/pkg/log"
 	"sigs.k8s.io/controller-runtime/pkg/log/zap"
 
-	rabbitmqcomv1alpha1 "github.com/rabbitmq/single-active-consumer-operator/api/v1alpha1"
+	sacv1alpha1 "github.com/rabbitmq/single-active-consumer-operator/api/v1alpha1"
 	//+kubebuilder:scaffold:imports
 )
 
@@ -57,7 +57,7 @@ var _ = BeforeSuite(func() {
 	Expect(err).NotTo(HaveOccurred())
 	Expect(cfg).NotTo(BeNil())
 
-	err = rabbitmqcomv1alpha1.AddToScheme(scheme.Scheme)
+	err = sacv1alpha1.AddToScheme(scheme.Scheme)
 	Expect(err).NotTo(HaveOccurred())
 
 	//+kubebuilder:scaffold:scheme

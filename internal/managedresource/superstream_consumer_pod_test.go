@@ -68,6 +68,5 @@ var _ = Describe("SuperstreamExchange", func() {
 		It("sets owner reference", func() {
 			Expect(pod.OwnerReferences[0].Name).To(Equal(superStreamConsumer.Name))
 		})
-
 	})
 })

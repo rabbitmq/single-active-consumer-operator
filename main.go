@@ -32,7 +32,7 @@ import (
 	"sigs.k8s.io/controller-runtime/pkg/log/zap"
 
 	topology "github.com/rabbitmq/messaging-topology-operator/api/v1alpha1"
-	rabbitmqcomv1alpha1 "github.com/rabbitmq/single-active-consumer-operator/api/v1alpha1"
+	sacv1alpha1 "github.com/rabbitmq/single-active-consumer-operator/api/v1alpha1"
 	"github.com/rabbitmq/single-active-consumer-operator/controllers"
 	//+kubebuilder:scaffold:imports
 )
@@ -45,7 +45,7 @@ var (
 func init() {
 	utilruntime.Must(clientgoscheme.AddToScheme(scheme))
 
-	utilruntime.Must(rabbitmqcomv1alpha1.AddToScheme(scheme))
+	utilruntime.Must(sacv1alpha1.AddToScheme(scheme))
 	utilruntime.Must(topology.AddToScheme(scheme))
 	//+kubebuilder:scaffold:scheme
 }
@@ -93,7 +93,7 @@ func main() {
 		setupLog.Error(err, "unable to create controller", "controller", "SuperStreamConsumer")
 		os.Exit(1)
 	}
-	if err = (&rabbitmqcomv1alpha1.SuperStreamConsumer{}).SetupWebhookWithManager(mgr); err != nil {
+	if err = (&sacv1alpha1.SuperStreamConsumer{}).SetupWebhookWithManager(mgr); err != nil {
 		setupLog.Error(err, "unable to create webhook", "webhook", "SuperStreamConsumer")
 		os.Exit(1)
 	}
