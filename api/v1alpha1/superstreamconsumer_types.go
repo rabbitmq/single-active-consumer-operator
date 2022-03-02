@@ -23,9 +23,6 @@ import (
 	"k8s.io/apimachinery/pkg/runtime/schema"
 )
 
-// EDIT THIS FILE!  THIS IS SCAFFOLDING FOR YOU TO OWN!
-// NOTE: json tags are required.  Any new fields you add must have json tags for the fields to be serialized.
-
 // SuperStreamConsumerSpec defines the desired state of SuperStreamConsumer
 type SuperStreamConsumerSpec struct {
 	// Reference to the SuperStream that the SuperStreamConsumer will consume from, in the same namespace.

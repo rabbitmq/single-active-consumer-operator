@@ -9,7 +9,7 @@ import (
 	"k8s.io/apimachinery/pkg/runtime"
 )
 
-var _ = Describe("SuperstreamExchange", func() {
+var _ = Describe("SuperStreamConsumer", func() {
 	var (
 		superStreamConsumer           *sacv1alpha1.SuperStreamConsumer
 		superStreamConsumerPodBuilder *managedresource.SuperStreamConsumerPodBuilder
