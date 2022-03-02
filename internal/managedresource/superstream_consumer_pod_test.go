@@ -54,7 +54,7 @@ var _ = Describe("SuperStreamConsumer", func() {
 		It("sets expected labels on the Pod", func() {
 			Expect(pod.ObjectMeta.Labels).To(HaveKeyWithValue("rabbitmq.com/super-stream", "super-stream-1"))
 			Expect(pod.ObjectMeta.Labels).To(HaveKeyWithValue("rabbitmq.com/super-stream-partition", "sample-partition"))
-			Expect(pod.ObjectMeta.Labels).To(HaveKeyWithValue("rabbitmq.com/consumer-pod-spec-hash", "5963d9e83cb18c41"))
+			Expect(pod.ObjectMeta.Labels).To(HaveKeyWithValue("rabbitmq.com/consumer-pod-spec-hash", "ce687a50b83ea9cc"))
 		})
 		It("sets the podSpec", func() {
 			Expect(pod.Spec).To(Equal(podSpec))
