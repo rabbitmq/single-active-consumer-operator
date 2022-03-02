@@ -234,16 +234,10 @@ java -Dio.netty.processId=1 -jar super-stream-app.jar consumer --stream "${ACTIV
 			By("setting status.observedGeneration")
 			Expect(updatedSuperStream.Status.ObservedGeneration).To(Equal(updatedSuperStream.GetGeneration()))
 
-			By("deleting superStream")
+			By("deleting underlying resources when deleting superStream")
 			Expect(k8sClient.Delete(ctx, superStream)).To(Succeed())
-			var err error
-			Eventually(func() error {
-				_, err = rabbitClient.GetExchange(vhostName, "super-stream-test")
-				return err
-			}, 10).Should(HaveOccurred())
-			Expect(err.Error()).To(ContainSubstring("Object Not Found"))
 
-			By("deleting underlying resources")
+			var err error
 			Eventually(func() error {
 				_, err = rabbitClient.GetExchange(vhostName, "super-stream-test")
 				return err
@@ -300,6 +294,7 @@ java -Dio.netty.processId=1 -jar super-stream-app.jar consumer --stream "${ACTIV
 				"LastTransitionTime": Not(Equal(metav1.Time{})),
 			}))
 		})
+
 		When("creating both objects", func() {
 			BeforeEach(func() {
 				superStreamName = "topology-test"
@@ -360,6 +355,7 @@ java -Dio.netty.processId=1 -jar super-stream-app.jar consumer --stream "${ACTIV
 				}))
 			})
 		})
+
 		When("a consumer pod container hits an error", func() {
 			BeforeEach(func() {
 				superStreamName = "error-test"
@@ -406,6 +402,7 @@ java -Dio.netty.processId=1 -jar super-stream-app.jar consumer --stream "${ACTIV
 				}))
 			})
 		})
+
 		When("the super stream scales up its number of partitions", func() {
 			var existingPods corev1.PodList
 			BeforeEach(func() {
@@ -453,7 +450,6 @@ java -Dio.netty.processId=1 -jar super-stream-app.jar consumer --stream "${ACTIV
 					Expect(pod.Name).To(Equal(existingPod.Name))
 					Expect(pod.Status.ContainerStatuses[0].RestartCount).To(BeZero())
 				}
-
 			})
 		})
 	})
