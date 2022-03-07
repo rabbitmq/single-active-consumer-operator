@@ -18,6 +18,7 @@ package main
 
 import (
 	"flag"
+	"k8s.io/klog/v2"
 	"os"
 
 	// Import all Kubernetes client auth plugins (e.g. Azure, GCP, OIDC, etc.)
@@ -62,7 +63,10 @@ func main() {
 	opts.BindFlags(flag.CommandLine)
 	flag.Parse()
 
-	ctrl.SetLogger(zap.New(zap.UseFlagOptions(&opts)))
+	logger := zap.New(zap.UseFlagOptions(&opts))
+	ctrl.SetLogger(logger)
+	// https://github.com/kubernetes-sigs/controller-runtime/issues/1420#issuecomment-794525248
+	klog.SetLogger(logger.WithName("single-active-consumer-operator"))
 
 	var err error
 	options := ctrl.Options{Scheme: scheme}
