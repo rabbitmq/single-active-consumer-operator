@@ -16,3 +16,7 @@ spec:
       containers:
       - image: ((operator_docker_image))
         name: manager
+        imagePullPolicy: Always
+        args:
+        - "--config=controller_manager_config.yaml"
+        - "--zap-devel"
