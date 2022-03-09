@@ -55,6 +55,7 @@ type SuperStreamConsumerStatus struct {
 
 //+kubebuilder:object:root=true
 //+kubebuilder:subresource:status
+//+kubebuilder:resource:categories=all;rabbitmq
 
 // SuperStreamConsumer is the Schema for the superstreamconsumers API
 type SuperStreamConsumer struct {

@@ -8,6 +8,9 @@ metadata:
 spec:
   group: rabbitmq.com
   names:
+    categories:
+      - all
+      - rabbitmq
     kind: SuperStreamConsumer
     listKind: SuperStreamConsumerList
     plural: superstreamconsumers
