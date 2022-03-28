@@ -9,10 +9,10 @@ require (
 	github.com/onsi/gomega v1.18.1
 	github.com/rabbitmq/cluster-operator v1.11.1
 	github.com/rabbitmq/messaging-topology-operator v1.4.0
+	k8s.io/klog/v2 v2.60.1
 	k8s.io/api v0.23.5
 	k8s.io/apimachinery v0.23.5
 	k8s.io/client-go v0.23.5
-	k8s.io/klog/v2 v2.30.0
 	k8s.io/utils v0.0.0-20211116205334-6203023598ed
 	sigs.k8s.io/controller-runtime v0.11.1
 )
