@@ -7,7 +7,7 @@ require (
 	github.com/mitchellh/hashstructure/v2 v2.0.2
 	github.com/onsi/ginkgo/v2 v2.1.3
 	github.com/onsi/gomega v1.19.0
-	github.com/rabbitmq/cluster-operator v1.11.1
+	github.com/rabbitmq/cluster-operator v1.12.1
 	github.com/rabbitmq/messaging-topology-operator v1.4.0
 	k8s.io/api v0.23.6
 	k8s.io/apimachinery v0.23.6
