@@ -10,7 +10,7 @@ require (
 	github.com/rabbitmq/cluster-operator v1.14.0
 	github.com/rabbitmq/messaging-topology-operator v1.7.1
 	k8s.io/api v0.24.3
-	k8s.io/apimachinery v0.24.3
+	k8s.io/apimachinery v0.24.4
 	k8s.io/client-go v0.24.3
 	k8s.io/klog/v2 v2.70.1
 	k8s.io/utils v0.0.0-20220210201930-3a6ce19ff2f9
