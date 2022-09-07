@@ -1,6 +1,6 @@
 module github.com/rabbitmq/single-active-consumer-operator
 
-go 1.17
+go 1.19
 
 require (
 	github.com/michaelklishin/rabbit-hole/v2 v2.12.0
