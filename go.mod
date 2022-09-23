@@ -8,7 +8,7 @@ require (
 	github.com/onsi/ginkgo/v2 v2.2.0
 	github.com/onsi/gomega v1.20.2
 	github.com/rabbitmq/cluster-operator v1.14.0
-	github.com/rabbitmq/messaging-topology-operator v1.7.1
+	github.com/rabbitmq/messaging-topology-operator v1.8.0
 	k8s.io/api v0.25.2
 	k8s.io/apimachinery v0.25.2
 	k8s.io/client-go v0.25.2
