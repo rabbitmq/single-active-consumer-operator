@@ -3,10 +3,10 @@ module github.com/rabbitmq/single-active-consumer-operator
 go 1.19
 
 require (
-	github.com/michaelklishin/rabbit-hole/v2 v2.12.0
+	github.com/michaelklishin/rabbit-hole/v2 v2.13.0
 	github.com/mitchellh/hashstructure/v2 v2.0.2
 	github.com/onsi/ginkgo/v2 v2.8.1
-	github.com/onsi/gomega v1.26.0
+	github.com/onsi/gomega v1.27.1
 	github.com/rabbitmq/cluster-operator v1.14.0
 	github.com/rabbitmq/messaging-topology-operator v1.10.1
 	k8s.io/api v0.26.1
